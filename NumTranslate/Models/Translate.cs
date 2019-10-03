@@ -44,5 +44,54 @@ namespace NumTranslate.Models
             WierdOnes.Add("8","eighteen");
             WierdOnes.Add("9","nineteen");
         }
+        public List<string> StringToStringList(string newString)
+        {
+            List<string> stringList = new List<string> {};
+            char[] newCharArray = newString.ToCharArray(0,newString.Length);
+            foreach(char item in newCharArray)
+            {
+                string stringItem = item.ToString();
+                stringList.Add(stringItem);
+            }
+            return stringList;
+        }
+        public void ReplaceFirstDigit(List<string> stringList)
+        {
+            int index = stringList.Count -1;
+            foreach(KeyValuePair<string, string> entry in SingleDigits)
+            {
+                if(entry.Key == stringList[index])
+                {
+                    TextNumber.Add(entry.Value);
+                }
+            }
+        }
+        public void ReplaceSecondDigit(List<string> stringList)
+        {
+            int index = stringList.Count -2;
+            if(stringList[index] = "one")
+            {
+                stringList[index+1]="";
+                foreach(KeyValuePair<string, string> entry in WierdOnes)
+                {
+                    if(entry.Key == stringList[index])
+                    {
+                        TextNumber.Add(entry.Value);
+                    }
+                }
+            }
+            else
+            {
+                foreach(KeyValuePair<string, string> entry in DoubleDigits)
+                {
+                    if(entry.Key == stringList[index])
+                    {
+                        TextNumber.insert(0,entry.Value);
+                    }
+                }
+            }
+
+        }
+
     }
 }
